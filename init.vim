@@ -1,13 +1,13 @@
 " Plugins
 call plug#begin('~/.config/nvim/plugged')
-  Plug 'phanviet/vim-monokai-pro'
-  " Plug 'trevordmiller/nova-vim'
+  Plug 'morhetz/gruvbox'
+  Plug 'jiangmiao/auto-pairs'
+  Plug 'mattn/emmet-vim'
   Plug 'metakirby5/codi.vim'
   Plug 'editorconfig/editorconfig-vim'
   Plug 'w0rp/ale'
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
-  Plug 'sheerun/vim-polyglot'
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-fugitive'
   Plug 'rizzatti/dash.vim'
@@ -17,6 +17,9 @@ call plug#begin('~/.config/nvim/plugged')
   Plug '/usr/local/opt/fzf'
   Plug 'junegunn/fzf.vim'
   Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
+  Plug 'pangloss/vim-javascript'
+  Plug 'HerringtonDarkholme/yats.vim'
+  Plug 'HendrikPetertje/vimify'
 call plug#end()
 
 set shell=/bin/sh
@@ -25,11 +28,13 @@ set shell=/bin/sh
   set shiftwidth=2
   set tabstop=2
   set expandtab
-  set signcolumn=yes
   set foldmethod=indent
   set foldnestmax=10
   set foldlevel=2
   set nofoldenable
+  set wrap
+  set linebreak
+  set nolist
   autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
   " remove trailing whitespace
   autocmd BufWritePre * :%s/\s\+$//e
@@ -41,7 +46,8 @@ set shell=/bin/sh
   set termguicolors
   set number
   set relativenumber
-  colorscheme monokai_pro
+  set background=dark
+  colorscheme gruvbox
 
 " general mappings
   let g:mapleader = "\<Space>"
@@ -61,6 +67,9 @@ set shell=/bin/sh
   nnoremap <Leader>pc :PlugClean<CR>
   nnoremap <Leader>co :Codi<CR>
   nnoremap <Leader>ls :ls<CR>
+  nnoremap <Leader>sp :SpToggle<CR>
+  nnoremap <Leader>spl :SpNext<CR>
+  nnoremap <Leader>sph :SpPrevious<CR>
   nnoremap <silent> <Leader>z :Goyo<CR>
   nmap <silent> <leader>d <Plug>DashSearch
 
