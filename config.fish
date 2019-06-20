@@ -29,4 +29,3 @@ end
 
 # setup colors
 theme_gruvbox 'dark' 'medium'
-

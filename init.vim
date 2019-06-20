@@ -23,7 +23,6 @@ call plug#begin('~/.config/nvim/plugged')
 call plug#end()
 
 set shell=/bin/sh
-
 " Alignment Indentation & basic formatting
   set shiftwidth=2
   set tabstop=2
@@ -139,9 +138,6 @@ set nowritebackup
 " Better display for messages
 set cmdheight=2
 
-" Smaller updatetime for CursorHold & CursorHoldI
-set updatetime=300
-
 " don't give |ins-completion-menu| messages.
 set shortmess+=c
 
@@ -223,7 +219,6 @@ command! -nargs=0 Format :call CocAction('format')
 command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
 " Using CocList
-" Show all diagnostics
 nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
 " Manage extensions
 nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
