@@ -1,7 +1,8 @@
 " Plugins
 call plug#begin('~/.config/nvim/plugged')
-  Plug 'morhetz/gruvbox'
+  Plug 'atelierbram/Base2Tone-vim'
   Plug 'jiangmiao/auto-pairs'
+  Plug 'morhetz/gruvbox'
   Plug 'mattn/emmet-vim'
   Plug 'metakirby5/codi.vim'
   Plug 'editorconfig/editorconfig-vim'
@@ -17,8 +18,10 @@ call plug#begin('~/.config/nvim/plugged')
   Plug '/usr/local/opt/fzf'
   Plug 'junegunn/fzf.vim'
   Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
-  Plug 'pangloss/vim-javascript'
+  Plug 'othree/yajs.vim'
+  Plug 'othree/javascript-libraries-syntax.vim'
   Plug 'HerringtonDarkholme/yats.vim'
+  Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
   Plug 'HendrikPetertje/vimify'
 call plug#end()
 
@@ -46,7 +49,7 @@ set shell=/bin/sh
   set number
   set relativenumber
   set background=dark
-  colorscheme gruvbox
+  colorscheme Base2Tone_EveningDark
 
 " general mappings
   let g:mapleader = "\<Space>"
@@ -86,6 +89,7 @@ set shell=/bin/sh
 " airline config
   let g:airline_powerline_fonts = 1
   let g:airline#extensions#tabline#enabled = 1
+  let g:airline_theme='Base2Tone_EveningDark'
 
 " SNIPPETS
   inoremap ;j <ESC>/<++><CR>"_c4l

@@ -27,5 +27,5 @@ if not functions -q fisher
   fish -c fisher
 end
 
-# setup colors
-theme_gruvbox 'dark' 'medium'
+# set gruvbox prompt colors
+
