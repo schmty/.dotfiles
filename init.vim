@@ -1,6 +1,5 @@
 " Plugins
 call plug#begin('~/.config/nvim/plugged')
-  Plug 'atelierbram/Base2Tone-vim'
   Plug 'jiangmiao/auto-pairs'
   Plug 'morhetz/gruvbox'
   Plug 'mattn/emmet-vim'
@@ -10,8 +9,6 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
   Plug 'tpope/vim-surround'
-  Plug 'tpope/vim-fugitive'
-  Plug 'rizzatti/dash.vim'
   Plug 'junegunn/goyo.vim'
   Plug 'moll/vim-node'
   Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
@@ -49,7 +46,7 @@ set shell=/bin/sh
   set number
   set relativenumber
   set background=dark
-  colorscheme Base2Tone_EveningDark
+  colorscheme gruvbox
 
 " general mappings
   let g:mapleader = "\<Space>"
@@ -76,10 +73,6 @@ set shell=/bin/sh
   nmap <silent> <leader>d <Plug>DashSearch
 
 " Ale ESLint and Prettier Config
-  let g:ale_fixers = {
-    \ 'javascript': ['eslint']
-    \ }
-  let g:ale_fix_on_save = 1
   let g:ale_sign_error = '❌'
   let g:ale_sign_warning = '⚠️'
   highlight clear ALEErrorSign
@@ -89,21 +82,6 @@ set shell=/bin/sh
 " airline config
   let g:airline_powerline_fonts = 1
   let g:airline#extensions#tabline#enabled = 1
-  let g:airline_theme='Base2Tone_EveningDark'
-
-" SNIPPETS
-  inoremap ;j <ESC>/<++><CR>"_c4l
-  " JS snippets
-  " TODO: rename the files
-  autocmd FileType javascript inoremap ;af <ESC>:-1read $HOME/.config/nvim/snippets/javascript/arrow_func.js<CR>li
-  autocmd FileType javascript inoremap ;afunc <ESC>:-1read $HOME/.config/nvim/snippets/javascript/anon_func.js<CR>wli
-  autocmd Filetype javascript inoremap ;func <ESC>:-1read $HOME/.config/nvim/snippets/javascript/named_func.js<CR>wi
-  "TODO: these JS snippets
-  autocmd FileType javascript inoremap ;caf <ESC>:-1read $HOME/.config/nvim/snippets/javascript/const_arrow_func.js<CR>whi
-
-  " Python Snippets
-  autocmd FileType python inoremap ;defm <ESC>:-1read $HOME/.config/nvim/snippets/python/method.py<CR>wi
-  autocmd FileType python inoremap ;deff <ESC>:-1read $HOME/.config/nvim/snippets/python/func.py<CR>wi
 
 " Python config
   let g:python_host_prog="/Users/jake/.pyenv/versions/neovim2/bin/python"
