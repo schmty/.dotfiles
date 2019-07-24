@@ -20,6 +20,8 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'HerringtonDarkholme/yats.vim'
   Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
   Plug 'HendrikPetertje/vimify'
+  Plug 'SirVer/ultisnips'
+  Plug 'honza/vim-snippets'
 call plug#end()
 
 set shell=/bin/sh
