@@ -5,7 +5,7 @@ alias v="vim"
 alias nrc="nvim ~/.config/nvim/init.vim"
 alias e="open -a emacs"
 alias brewup="brew update; and brew upgrade"
-alias glog="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
+alias glog="git log --all --decorate --oneline --graph"
 nvm use default
 status --is-interactive; and pyenv init - | source
 status --is-interactive; and source (pyenv virtualenv-init -|psub)
