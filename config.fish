@@ -8,7 +8,7 @@ alias brewup="brew update; and brew upgrade"
 alias glog="git log --all --decorate --oneline --graph"
 alias gforgot="git add . and git commit --amend --no-edit"
 alias grecommit="git add . and git commit --amend"
-nvm use default
+nvm use 10.16.1
 status --is-interactive; and pyenv init - | source
 status --is-interactive; and source (pyenv virtualenv-init -|psub)
 status --is-interactive; and pyenv virtualenv-init - | source
@@ -23,12 +23,6 @@ end
 
 set fish_key_bindings fish_user_key_bindings
 set -gx PATH /Users/jake/.bin $PATH
-
-if not functions -q fisher
-  set -q XDG_CONFIG_HOME; or set XDG_CONFIG_HOME ~/.config
-  curl https://git.io/fisher --create-dirs -sLo $XDG_CONFIG_HOME/fish/functions/fisher.fish
-  fish -c fisher
-end
 
 # monokai colors
 # Colors:
