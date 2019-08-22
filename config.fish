@@ -24,7 +24,6 @@ end
 set fish_key_bindings fish_user_key_bindings
 set -gx PATH /Users/jake/.bin $PATH
 
-# monokai colors
 # Colors:
 set fish_color_normal F8F8F2 # the default color
 set fish_color_command F92672 # the color for commands
