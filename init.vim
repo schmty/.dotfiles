@@ -2,27 +2,27 @@
 call plug#begin('~/.config/nvim/plugged')
   Plug 'jiangmiao/auto-pairs'
   Plug 'phanviet/vim-monokai-pro'
+  Plug 'morhetz/gruvbox'
   Plug 'mattn/emmet-vim'
   Plug 'metakirby5/codi.vim'
   Plug 'editorconfig/editorconfig-vim'
-  Plug 'w0rp/ale'
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
   Plug 'tpope/vim-surround'
   Plug 'junegunn/goyo.vim'
-  Plug 'moll/vim-node'
-  Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
-  Plug '/usr/local/opt/fzf'
-  Plug 'junegunn/fzf.vim'
   Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
-  Plug 'othree/yajs.vim'
-  Plug 'othree/javascript-libraries-syntax.vim'
-  Plug 'HerringtonDarkholme/yats.vim'
-  Plug 'maxmellon/vim-jsx-pretty'
-  Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
   Plug 'HendrikPetertje/vimify'
-  Plug 'SirVer/ultisnips'
+  Plug 'scrooloose/nerdtree'
+  Plug 'dhruvasagar/vim-vinegar'
+  Plug 'ryanoasis/vim-devicons'
   Plug 'honza/vim-snippets'
+  Plug 'ctrlpvim/ctrlp.vim'
+  Plug 'junegunn/rainbow_parentheses.vim'
+  Plug 'leafgarland/typescript-vim'
+  Plug 'peitalin/vim-jsx-typescript'
+  Plug 'othree/yajs.vim'
+  Plug 'mxw/vim-jsx'
+  Plug 'othree/javascript-libraries-syntax.vim'
 call plug#end()
 
 set shell=/bin/sh
@@ -41,6 +41,10 @@ set shell=/bin/sh
   " remove trailing whitespace
   autocmd BufWritePre * :%s/\s\+$//e
 
+  " wildignore and other ignores
+  set wildignore=node_modules/
+  let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+
 
 " syntax and colorscheme
   syntax on
@@ -49,7 +53,7 @@ set shell=/bin/sh
   set number
   set relativenumber
   set background=dark
-  colorscheme monokai_pro
+  colorscheme gruvbox
 
 " general mappings
   let g:mapleader = "\<Space>"
@@ -58,8 +62,6 @@ set shell=/bin/sh
   nmap H 0
   vmap L $
   vmap H 0
-  nmap <CR> G
-  nmap <BS> gg
   nnoremap <Leader>w :w<CR>
   nnoremap <Leader>q :q!<CR>
   nnoremap <Leader>x :x<CR>
@@ -73,14 +75,11 @@ set shell=/bin/sh
   nnoremap <Leader>spl :SpNext<CR>
   nnoremap <Leader>sph :SpPrevious<CR>
   nnoremap <silent> <Leader>z :Goyo<CR>
+  nnoremap <silent> <Leader>nt :NERDTreeToggle<CR>
   nmap <silent> <leader>d <Plug>DashSearch
 
-" Ale ESLint and Prettier Config
-  let g:ale_sign_error = '❌'
-  let g:ale_sign_warning = '⚠️'
-  highlight clear ALEErrorSign
-  highlight clear ALEWarningSign
-
+" nerdtree config
+let NERDTreeShowHidden=1
 
 " airline config
   let g:airline_powerline_fonts = 1
@@ -89,12 +88,6 @@ set shell=/bin/sh
 " Python config
   let g:python_host_prog="/Users/jake/.pyenv/versions/neovim2/bin/python"
   let g:python3_host_prog="/Users/jake/.pyenv/versions/neovim3/bin/python"
-
-" fuzzy finding settings
-  "set path+=**
-  "set wildignore+=**/node_modules/**
-  "set wildmenu
-  nnoremap <C-p> :Files .<CR>
 
 " ctags stuff
   " - Use ^] to jump to tag under cursor
@@ -133,30 +126,25 @@ set signcolumn=yes
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
 " Use <c-space> to trigger completion.
 
-" Press Tab and Shift+Tab and navigate around completion selections
+
+" snippet stuff
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
 function! s:check_back_space() abort
-  let col = col('.') -1
-  return !col || getline('.')[col - 1] =~ '\s'
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-inoremap <silent><expr> <Tab>
-  \ pumvisible() ? "\<C-n>" :
-  \ <SID>check_back_space() ? "\<Tab>" :
-  \ coc#refresh()
-inoremap <silent><expr> <S-Tab>
-  \ pumvisible() ? "\<C-p>" :
-  \ <SID>check_back_space() ? "\<S-Tab>" :
-  \ coc#refresh()
-
-" Press Enter to select completion items or expand snippets
-inoremap <silent><expr> <CR>
-  \ pumvisible() ? "\<C-y>" :
-  \ "\<C-g>u\<CR>"
-
-let g:coc_snippet_next = '<Tab>'              " Use Tab to jump to next snippet placeholder
-let g:coc_snippet_prev = '<S-Tab>'            " Use Shift+Tab to jump to previous snippet placeholder
-
 inoremap <silent><expr> <c-space> coc#refresh()
+
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
 
 " Use `[c` and `]c` to navigate diagnostics
 nmap <silent> [c <Plug>(coc-diagnostic-prev)
@@ -228,3 +216,10 @@ nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+
+" Rainbow parens
+autocmd FileType * RainbowParentheses
+let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
+
+" othree javascript libraries
+let g:used_javascript_libs = 'react,underscore,ramda'
