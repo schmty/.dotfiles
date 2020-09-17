@@ -41,9 +41,3 @@ set -g fish_user_paths "/usr/local/sbin" $fish_user_paths
 if [ -f '/Users/jake/google-cloud-sdk/path.fish.inc' ]; . '/Users/jake/google-cloud-sdk/path.fish.inc'; end
 set -g fish_user_paths "/usr/local/opt/openjdk/bin" $fish_user_paths
 
-set -x GOOGLE_APPLICATION_CREDENTIALS /Users/jake/.config/kwiver/kwiver-app-firebase-adminsdk-ku8hh-68e5c1f1e9.json
-
-# Use the python3 interpreter on your path
-set -x CLOUDSDK_PYTHON python3
-
-source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.fish.inc
