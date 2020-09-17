@@ -1,28 +1,24 @@
 " Plugins
 call plug#begin('~/.config/nvim/plugged')
-  Plug 'jiangmiao/auto-pairs'
-  Plug 'phanviet/vim-monokai-pro'
   Plug 'morhetz/gruvbox'
-  Plug 'mattn/emmet-vim'
-  Plug 'metakirby5/codi.vim'
+  Plug 'phanviet/vim-monokai-pro'
+  Plug 'jiangmiao/auto-pairs'
   Plug 'editorconfig/editorconfig-vim'
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
   Plug 'tpope/vim-surround'
   Plug 'junegunn/goyo.vim'
-  Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
-  Plug 'HendrikPetertje/vimify'
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'scrooloose/nerdtree'
-  Plug 'dhruvasagar/vim-vinegar'
+  Plug 'scrooloose/nerdcommenter'
+  Plug 'Xuyuanp/nerdtree-git-plugin'
+  Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+  Plug 'airblade/vim-gitgutter'
   Plug 'ryanoasis/vim-devicons'
-  Plug 'honza/vim-snippets'
-  Plug 'ctrlpvim/ctrlp.vim'
-  Plug 'junegunn/rainbow_parentheses.vim'
-  Plug 'leafgarland/typescript-vim'
-  Plug 'peitalin/vim-jsx-typescript'
-  Plug 'othree/yajs.vim'
-  Plug 'mxw/vim-jsx'
-  Plug 'othree/javascript-libraries-syntax.vim'
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'junegunn/fzf.vim'
+  Plug 'nvim-treesitter/nvim-treesitter'
+  Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 call plug#end()
 
 set shell=/bin/sh
@@ -102,10 +98,15 @@ let NERDTreeShowHidden=1
   " - ^x^] for tags only
   " - ^n for anything specified by the 'complete' option list
 
-" netrw stuff
-  let g:netrw_banner=0 " disable annoying netrw banner
-  let g:netrw_liststyle=3 " tree view
 " coc config
+let g:coc_blobal_extensions = [
+      \ 'coc-snippets',
+      \ 'coc-tsserver',
+      \ 'coc-eslint',
+      \ 'coc-prettier',
+      \ 'coc-json',
+      \ 'coc-emmet',
+      \ ]
 " if hidden is not set, TextEdit might fail.
 set hidden
 
@@ -217,9 +218,19 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
-" Rainbow parens
-autocmd FileType * RainbowParentheses
-let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
+" easy tags config
+let g:easytags_syntax_keyword = 'always'
 
-" othree javascript libraries
-let g:used_javascript_libs = 'react,underscore,ramda'
+" tree sitter config
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "all",     -- one of "all", "language", or a list of languages
+  highlight = {
+    enable = true,              -- false will disable the whole extension
+  },
+}
+EOF
+
+" control p for Files and FZF config
+nnoremap <leader>s :<C-u>Files<CR>
+
