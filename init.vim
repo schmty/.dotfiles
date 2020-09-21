@@ -17,8 +17,13 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'ryanoasis/vim-devicons'
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
-  Plug 'nvim-treesitter/nvim-treesitter'
   Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+  Plug 'RRethy/vim-hexokinase', { 'do': 'make hexokinase' }
+  Plug 'junegunn/rainbow_parentheses.vim'
+  Plug 'leafgarland/typescript-vim'
+  Plug 'pangloss/vim-javascript'
+  Plug 'MaxMEllon/vim-jsx-pretty'
+  Plug 'mattn/emmet-vim'
 call plug#end()
 
 set shell=/bin/sh
@@ -26,6 +31,7 @@ set shell=/bin/sh
   set shiftwidth=2
   set tabstop=2
   set expandtab
+  set autoindent
   set foldmethod=indent
   set foldnestmax=10
   set foldlevel=2
@@ -39,7 +45,6 @@ set shell=/bin/sh
 
   " wildignore and other ignores
   set wildignore=node_modules/
-  let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 
 
 " syntax and colorscheme
@@ -221,16 +226,16 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 " easy tags config
 let g:easytags_syntax_keyword = 'always'
 
-" tree sitter config
-lua <<EOF
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = "all",     -- one of "all", "language", or a list of languages
-  highlight = {
-    enable = true,              -- false will disable the whole extension
-  },
-}
-EOF
+
 
 " control p for Files and FZF config
 nnoremap <leader>s :<C-u>Files<CR>
+
+" Rainbow Parens
+let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
+
+autocmd FileType * RainbowParentheses
+
+" Hexokinase
+let g:Hexokinase_highlighters = ['background']
 
