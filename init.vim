@@ -1,7 +1,7 @@
 " Plugins
 call plug#begin('~/.config/nvim/plugged')
   Plug 'morhetz/gruvbox'
-  Plug 'phanviet/vim-monokai-pro'
+  Plug 'co1ncidence/monokai-pro.vim'
   Plug 'jiangmiao/auto-pairs'
   Plug 'editorconfig/editorconfig-vim'
   Plug 'vim-airline/vim-airline'
@@ -24,6 +24,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'pangloss/vim-javascript'
   Plug 'MaxMEllon/vim-jsx-pretty'
   Plug 'mattn/emmet-vim'
+  Plug 'keith/swift.vim'
 call plug#end()
 
 set shell=/bin/sh
@@ -54,7 +55,7 @@ set shell=/bin/sh
   set number
   set relativenumber
   set background=dark
-  colorscheme gruvbox
+  colorscheme monokai-pro
 
 " general mappings
   let g:mapleader = "\<Space>"

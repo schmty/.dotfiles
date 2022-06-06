@@ -11,7 +11,7 @@ alias gforgot="git add . and git commit --amend --no-edit"
 alias grecommit="git add . and git commit --amend"
 alias goshit="git checkout -- ."
 alias cdc="cd && clear"
-nvm use 10
+nvm use default
 status --is-interactive; and pyenv init - | source
 status --is-interactive; and source (pyenv virtualenv-init -|psub)
 status --is-interactive; and pyenv virtualenv-init - | source
